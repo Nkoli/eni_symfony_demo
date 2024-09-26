@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    Edit a course | {{parent()  }}
+{% endblock %}
+
+{% block body %}
+    <h1>Edit a course</h1>
+    <div>
+        {{ form_start(courseForm) }}
+        {{ form_widget(courseForm) }}
+        <button class="btn btn-primary" >Add</button>
+        {{ form_end(courseForm) }}
+    </div>
+{% endblock %}

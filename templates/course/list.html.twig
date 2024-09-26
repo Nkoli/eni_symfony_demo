@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Course List</h1>
+    <table class="table-sm table-bordered">
+        <thead>
+            <tr>
+                <th scope="col">Title</th>
+                <th scope="col">Duration (days)</th>
+                <th scope="col">Creation Date</th>
+                <th scope="col">Published</th>
+                <th scope="col"></th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for course in courses %}
+            <tr>
+                <td>{{ course.name}}</td>
+                <td>{{ course.duration}}</td>
+                <td>{{ course.dateCreated | date('d/m/Y') }}</td>
+                <td>{{ course.published ? "X": ""}}</td>
+                <td>
+                    <a href="{{ path('cours_show', {'id': course.id}) }}" title="Course detail">Learn more</a>
+                    <a href="{{ path('cours_edit', {'id': course.id}) }}" title="Modify course">Modify</a>
+
+                </td>
+            </tr>
+        {% else %}
+            <tr><td colspan="5">There are no courses in the database</td></tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}
+
+{% block title %}
+    {{ parent() }} | Course List
+
+{% endblock %}
+

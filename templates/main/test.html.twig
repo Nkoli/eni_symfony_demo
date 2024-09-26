@@ -1,0 +1,56 @@
+{% extends "base.html.twig" %}
+
+{% block title %}
+    {{ parent() }} | Test
+{% endblock %}
+
+{% block body %}
+    <h1>Twig Demo</h1>
+
+    {#Create a comment#}
+    {% set name = "Nkoli" %}
+    <h2>Bonjour {{ name }}</h2>
+
+    {#Object creation #}
+    {% set book = {
+        title: 'Symfony',
+        year: 2000,
+        author: 'John Doe'
+    } %}
+
+    <h3>{{ book.author }}</h3>
+    <div>
+        {% for key, value in book %}
+            <div>{{ key }}: {{ value }}</div>
+        {% endfor %}
+    </div>
+    <hr>
+    {# Create a variable #}
+    {% set name2 = "Penelope" %}
+    <h2>{{ name2 | upper }}</h2>
+    <h2>{{ name2 | length }}</h2>
+
+    {# Create an array  #}
+    {% set colours =  ["orange", "brown", "turquoise", "blue"] %}
+    <p>Number of colours: {{ colours | length }}</p>
+    <p>{{ colours | join('/') }}</p>
+    {% for colour in colours %}
+        <div style="background-color: {{ colour }}">
+            {{ loop.index }}: {{ colour }}
+        </div>
+    {% endfor %}
+
+    <p>{{ "+1 year" | date }}</p>
+    <p>{{ "+1 year " | date('Y') }}</p>
+
+    {% set h1interpreted="<h1>I am an interpreted title</h1>" %}
+    {{ h1interpreted  | raw }}
+    {{ h1interpreted }}
+    <hr>
+
+    <p>
+        {{ mySerie.title|raw }} {{ anotherVar }}
+    </p>
+
+{% endblock %}
+
